@@ -9,11 +9,13 @@ import EditFridgeTempPage from './components/EditFridgeTempPage';
 import RecordFridgeTemp from './components/RecordFridgeTemp';
 import NavigationBar from './components/NavigationBar/NavigationBar';
 import FoodTempForm from './components/tempForms/FoodTempForm'
+import {QueryClient} from "react-query";
 
+const queryClient = new QueryClient()
 
 const App = () => {
   return (
-    <Fragment>
+    <QueryClientProvider client={queryClient}>
       <Router>
         <Header />
         <NavigationBar />
@@ -26,7 +28,7 @@ const App = () => {
           <Route path='food' element={<FoodTempForm />} />
         </Routes>
       </Router>
-    </Fragment>
+    </QueryClientProvider>
   )
 };
 
