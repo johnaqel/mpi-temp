@@ -11,6 +11,8 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 import FoodTempForm from './components/tempForms/FoodTempForm'
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
+import {useAuthentication} from "./security/authentication";
+import {AuthenticatedApp} from "./AuthenticatedApp";
 
 const theme = extendTheme({
   //customize theme here
@@ -19,21 +21,27 @@ const theme = extendTheme({
 const queryClient = new QueryClient()
 
 const App = () => {
+  let {isLoggedIn} = useAuthentication();
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Router>
-          <Header />
-          <NavigationBar />
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='login' element={<Login />} />
-            <Route path='fridgelists' element={<FridgeLists />} />
-            <Route path='edit/:id' element={<EditFridgeTempPage />} />
-            <Route path='temp' element={<RecordFridgeTemp />} />
-            <Route path='food' element={<FoodTempForm />} />
-          </Routes>
-        </Router>
+          {isLoggedIn
+            ? <AuthenticatedApp/>
+            : <Login/>
+          }
+
+        {/*<Router>*/}
+        {/*  <Header />*/}
+        {/*  <NavigationBar />*/}
+        {/*  <Routes>*/}
+        {/*    <Route path='/' element={<Home />} />*/}
+        {/*    <Route path='login' element={<Login />} />*/}
+        {/*    <Route path='fridgelists' element={<FridgeLists />} />*/}
+        {/*    <Route path='edit/:id' element={<EditFridgeTempPage />} />*/}
+        {/*    <Route path='temp' element={<RecordFridgeTemp />} />*/}
+        {/*    <Route path='food' element={<FoodTempForm />} />*/}
+        {/*  </Routes>*/}
+        {/*</Router>*/}
       </QueryClientProvider>
     </ChakraProvider>
   )
