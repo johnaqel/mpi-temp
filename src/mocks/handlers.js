@@ -1,7 +1,14 @@
 import { rest } from 'msw'
 
+let cookTemps = [{id:1, timestamp:'12:40', item: 'Chicken Wings', temperature: 79.5 }];
 
 export const handlers = [
+    rest.get('/cook-temp', (req, res, ctx) => {
+       return res(
+           ctx.status(200),
+           ctx.json(cookTemps)
+       )
+    }),
     rest.post('/login', (req, res, ctx) => {
         // Persist user's authentication in the session
         sessionStorage.setItem('is-authenticated', 'true')

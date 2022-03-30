@@ -14,9 +14,14 @@ import {ChakraProvider, extendTheme} from "@chakra-ui/react";
 import {useAuthentication} from "./security/authentication";
 import {AuthenticatedApp} from "./AuthenticatedApp";
 
+const themeConfig = {
+    initialColorMode: "light",
+    useSystemColorMode: true,
+};
+
 const theme = extendTheme({
-  //customize theme here
-})
+  themeConfig
+});
 
 const queryClient = new QueryClient()
 
