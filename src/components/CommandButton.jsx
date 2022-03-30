@@ -7,10 +7,19 @@ import {
     ModalOverlay,
     useDisclosure
 } from "@chakra-ui/react";
+import {FormHost} from "../utils/FormHost";
 
 export const CommandButton = ({title, form}) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+
+    const submitSuccess = () => {
+        onClose()
+    }
+
+    const cancel = () => {
+        onClose()
+    }
 
     return (
         <>
@@ -21,7 +30,10 @@ export const CommandButton = ({title, form}) => {
                     <ModalHeader>{title}</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        {form}
+                        <FormHost onSubmitSuccess={submitSuccess} onCancel={cancel}>
+                            {form}
+                        </FormHost>
+
                     </ModalBody>
 
                     <ModalFooter>
