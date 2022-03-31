@@ -1,4 +1,4 @@
-import {Input, NumberInput, NumberInputField} from "@chakra-ui/react";
+import {Button, Input, NumberInput, NumberInputField} from "@chakra-ui/react";
 import {useForm} from "react-hook-form";
 import {useFormHost} from "../../utils/FormHost";
 
@@ -22,7 +22,7 @@ export const RegisterCookTempForm = () => {
                     <NumberInputField />
                 </NumberInput>
                 {errors.cookTemp && <span>This field is required.</span>}
-                <input type="submit" />
+                <Button type="submit" >Submit</Button>
             </form>
         </>
     )
