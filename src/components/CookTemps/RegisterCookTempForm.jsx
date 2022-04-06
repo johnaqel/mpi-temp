@@ -44,9 +44,6 @@ export const RegisterCookTempForm = () => {
                         </NumberInput>
                     )}
                 />
-                {/*<NumberInput defaultValue={0} precision={1} {...register("temperature", { required: true })}>*/}
-                {/*    <NumberInputField />*/}
-                {/*</NumberInput>*/}
                 {errors.cookTemp && <span>This field is required.</span>}
                 <Button type="submit" >Submit</Button>
             </form>
