@@ -9,6 +9,17 @@ export const handlers = [
            ctx.json(cookTemps)
        )
     }),
+    rest.post('/cook-temp', (req, res, ctx) => {
+        const id = cookTemps.length+1;
+        const timestamp = '12:00';
+        console.log(req.body);
+        const {item, temperature} = req.body
+        cookTemps.push({id, timestamp, item, temperature});
+        return res(
+            ctx.status(200),
+            ctx.json(req.body)
+        )
+    }),
     rest.post('/login', (req, res, ctx) => {
         // Persist user's authentication in the session
         sessionStorage.setItem('is-authenticated', 'true')

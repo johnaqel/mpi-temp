@@ -11,6 +11,7 @@ import NavigationBar from './components/NavigationBar/NavigationBar';
 import FoodTempForm from './components/tempForms/FoodTempForm'
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ChakraProvider, extendTheme} from "@chakra-ui/react";
+import { ColorModeScript } from "@chakra-ui/color-mode";
 import {useAuthentication} from "./security/authentication";
 import {AuthenticatedApp} from "./AuthenticatedApp";
 
@@ -29,7 +30,9 @@ const App = () => {
   let {isLoggedIn} = useAuthentication();
   return (
     <ChakraProvider theme={theme}>
-      <QueryClientProvider client={queryClient}>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+
+        <QueryClientProvider client={queryClient}>
           {isLoggedIn
             ? <AuthenticatedApp/>
             : <Login/>
