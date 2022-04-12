@@ -4,9 +4,17 @@ let cookTemps = [{id:1, timestamp:'12:40', item: 'Chicken Wings', temperature: 7
 
 export const handlers = [
     rest.get('/cook-temp', (req, res, ctx) => {
-       return res(
+        const {criteria = {}, offset = 0, limit = 10 } = req.body || {};
+        let results = cookTemps;
+        if(criteria.item) {
+            results = cookTemps.filter(cookTemp=>cookTemp.item.toLowerCase().includes(criteria.item.toLowerCase()))
+        }
+
+        let data = results.slice(offset, offset+limit);
+        let total = cookTemps.length;
+        return res(
            ctx.status(200),
-           ctx.json(cookTemps)
+           ctx.json({offset, limit, total, data})
        )
     }),
     rest.post('/cook-temp', (req, res, ctx) => {

@@ -20,7 +20,7 @@ export const CookTemps = () => {
                     </Tr>
                 </Thead>
                 <Tbody>
-                    {query.isSuccess && query.data.map(cookTemp=>
+                    {query.isSuccess && query.data.data.map(cookTemp=>
                         <Tr key={cookTemp.id}>
                             <Td>{cookTemp.timestamp}</Td>
                             <Td>{cookTemp.item}</Td>
